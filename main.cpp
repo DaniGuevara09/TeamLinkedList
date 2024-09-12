@@ -1,6 +1,9 @@
 
 #include <iostream>
+#include <fstream>
 #include "LinkedList.cpp"
+#include <unistd.h>  // para getcwd
+#include <limits.h>  // para PATH_MAX
 
 using namespace std;
 
@@ -31,6 +34,28 @@ int main() {
 
     delete(list);
 
+
+    // __________________________________________________
+    LinkedList<string> * nums = new LinkedList<string>();
+
+    ifstream file("/home/dani/Documents/Uni/ProgrammingIII/Class/Proj5LinkedList/TeamLinkedList/info.in");
+    if (!file.is_open()) {
+        cerr << "Error al abrir el archivo." << endl;
+        return 1;
+    }
+
+    string line;
+    while (getline(file,line)) {
+        if (line == "-1") {
+            break;
+        }
+        nums->addNodeFirst(new string(line));
+    }
+
+    for (string *c: nums->getLinkedList()) {
+        cout << *c << "-" ;
+    }
+    delete(nums);
 
     return 0;
 }
