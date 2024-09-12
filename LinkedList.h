@@ -17,7 +17,7 @@ public:
     void addNodeAfterTo( Node<T>*, T* );
     void addNodeBeforeTo( Node<T>*, T* );
     void addNodeSorted(T*);
-    Node<T>* findNode(int);
+    Node<T>* findNode(T*);
     T* findInfo( int );
     std::vector<T*> getLinkedList();
     T* deleteNode(Node<T>*);

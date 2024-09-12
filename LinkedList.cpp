@@ -112,11 +112,11 @@ T *LinkedList<T>::findInfo(int value) {
  */
 
 template<class T>
-Node<T> *LinkedList<T>::findNode(int value) {
+Node<T> *LinkedList<T>::findNode(T* info) {
     Node<T>* current = head;
 
     while (current != nullptr) {
-        if (*current->info == value) {
+        if ( current->info->getId() == info->getId() ) {
             return current;
         }
         current = current->next;
@@ -143,9 +143,21 @@ void LinkedList<T>::addNodeSorted(T * node) {
  */
 template<class T>
 void LinkedList<T>::addNodeBeforeTo(Node<T> *targetNode, T *newData) {
+    Node<T> *newNode= new Node<T>(newData);
+    if ( targetNode == head ){
+        newNode->next = head;
+        head = newNode;
+    }else{
+        Node<T> *current = head;
+        while( current->next != targetNode ){
+            current = current->next;
+        }
+        newNode->next = current->next;
+        current->next = newNode;
+    }
 
 
-    Node<T> *current = head;
+    /*Node<T> *current = head;
     Node<T> *previous = nullptr;
     Node<T> *newNode= new Node<T>(newData);
 
@@ -158,7 +170,7 @@ void LinkedList<T>::addNodeBeforeTo(Node<T> *targetNode, T *newData) {
     if (current == targetNode) {
         previous->next = newNode;
         newNode->next = current;
-    }
+    }*/
 }
 
 
@@ -170,11 +182,11 @@ void LinkedList<T>::addNodeBeforeTo(Node<T> *targetNode, T *newData) {
  */
 template<class T>
 void LinkedList<T>::addNodeLast(T *data) {
-    Node newNode = new Node(data);
+    Node<T> *newNode = new Node<T>(data);
     if (isEmpty()) {
         head = newNode;
     } else {
-        Node aux = head;
+        Node<T> *aux = head;
         while (aux->next != nullptr) {
             aux = aux->next;
         }
@@ -183,25 +195,23 @@ void LinkedList<T>::addNodeLast(T *data) {
 }
 
 template<class T>
-void LinkedList<T>::addNodeAfterTo(Node<T> * node, T * value) {
-    Node<T> *newNode= new Node<T>(node);
+void LinkedList<T>::addNodeAfterTo(Node<T> *node, T* value) {
+    Node<T> *newNode= new Node<T>(value);
 
-    if (head == nullptr) {
-        head = newNode;
-    } else {
         Node<T> *temp = head;
-        while (temp->next != nullptr) {
+        while (temp != node ) {
             temp = temp->next;  // Recorremos la lista hasta el último nodo
         }
+        newNode->next = temp->next;
         temp->next = newNode;
-    }
+
 }
 
 /**
  * loren ipsum
  * @tparam T
  * @param node Objeto a partir del cual se va a crear el nodo
- */
+
 template<class T>
 void LinkedList<T>::addNodeFirst(T * node) {
     Node<T> *newNode = new Node<T>(node);
@@ -212,7 +222,7 @@ void LinkedList<T>::addNodeFirst(T * node) {
         newNode->next = head;
         head = newNode;
     }
-}
+}*/
 
 /**
  * Responsable Riaño Herrera

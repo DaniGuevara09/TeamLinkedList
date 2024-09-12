@@ -2,30 +2,29 @@
 #include <iostream>
 #include <fstream>
 #include "LinkedList.cpp"
-#include <unistd.h>  // para getcwd
-#include <limits.h>  // para PATH_MAX
+#include "Notion.cpp"
 
 using namespace std;
 
 int main() {
-    LinkedList<char> *list = new LinkedList<char>();
+    LinkedList<Notion> *list = new LinkedList<Notion>();
 
-    char r = 'R';
-    char j = 'J';
-    char a = 'A';
-    char i = 'I';
-    char o = 'O';
-  
-    list->addNodeFirst(&o);
-    list->addNodeFirst(&r);
-    list->addNodeFirst(&i);
-    list->addNodeFirst(&a);
-    list->addNodeFirst(&j);
+    list->addNodeFirst( new Notion(234,"Primera Nota"));
+    list->addNodeLast( new Notion(100,"Segunda Nota"));
+    list->addNodeLast( new Notion(50,"Tercera Nota"));
+    list->addNodeFirst( new Notion(10,"Cuarta Nota"));
 
+    //cout<<list->findNode(new Notion(800,""))<<endl;
 
-    // J-A-I-R-O
-    for (char *c: list->getLinkedList()) {
-        cout << *c << "-" ;
+    list->addNodeAfterTo( list->findNode(new Notion(100,"")), new Notion(80,"loren ipsum"));
+    list->addNodeAfterTo( list->findNode(new Notion(50,"")), new Notion(2000,"loren ipsum"));
+    //list->addNodeBeforeTo( list->findNode(new Notion(234,"")), new Notion(1200,"Ultisima"));
+
+    //10-234-100-50
+    //10-234-100-80-50
+
+    for( Notion *notion : list->getLinkedList()){
+        cout<<notion->getId()<<"-"<<notion->getName()<<endl;
     }
     cout << endl;
     cout <<"El tamaño del Nodo es de: "<< list->getSize() << endl;

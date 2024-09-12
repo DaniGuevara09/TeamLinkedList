@@ -7,7 +7,6 @@ Ejemplo académico de la lógica de listas enlazadas sencillas, desarrollado por
 
 ## Responsables
 - _adNodeFirst()_ --> Angarita Cordero
-- _adNodeFirst()_ --> Arias Pita
 - _addNodeLast()_ --> Barrera Camargo
 - _addNodeAfterTo()_ --> Chaparro Verdugo
 - _addNodeBeforeTo()_ --> Delgado López
